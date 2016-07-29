@@ -6,7 +6,7 @@ const initialState = {
     products: [],
     isRefreshing: false,
     isLoadingMore: false,
-    totalWarehouseCount: 100
+    totalProductCount: 200  //由服务端返回 这里临时指定一个值设置为上限
 };
 
 function reducer(state = initialState, action) {

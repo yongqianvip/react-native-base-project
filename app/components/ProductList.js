@@ -29,17 +29,18 @@ class ProductList extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			products:['1','2','3','4','5','6']
-		}
 	}
 
 	componentDidMount() {
 		this.props.dispatch(getProductList(_pageNo));		
 	}
 
-	_renderRow(rowData, sectionID, rowID, highlightRow) {
+	_renderRow(rowData,SectionId,rowID) {
 		return <ProductCell rowData={rowData} rowID={ rowID }/>
+	}
+
+	_onRefresh() {
+		this.props.dispatch(getProductList(2));
 	}
 
 	_loadMoreData() {
@@ -51,20 +52,14 @@ class ProductList extends Component {
 
 	_toEnd() {
 		const { reducer } = this.props;
-		if (reducer.isLoadingMore) {
-			return;
-		};
-		if (reducer.products.length >= reducer.totalWarehouseCount || reducer.isRefreshing) {
+		//ListView滚动到底部，根据是否正在加载更多 是否正在刷新 是否已加载全部来判断是否执行加载更多
+		if (reducer.isLoadingMore || reducer.products.length >= reducer.totalProductCount || reducer.isRefreshing) {
 			return;
 		};
 		InteractionManager.runAfterInteractions(() => {
 			console.log("触发加载更多 toEnd() --> ");
 			this._loadMoreData();
 		});
-	}
-
-	_onRefresh() {
-		this.props.dispatch(getProductList(2));
 	}
 
 	render() {
@@ -89,15 +84,18 @@ class ProductList extends Component {
 				
 		)
 	}
-	
+
 	_renderFooter() {
 		const { reducer } = this.props;
+		//通过当前product数量和刷新状态（是否正在下拉刷新）来判断footer的显示
 		if (reducer.products.length < 1 || reducer.isRefreshing) {
 			return null
 		};
-		if (reducer.products.length < reducer.totalWarehouseCount) {
+		if (reducer.products.length < reducer.totalProductCount) {
+			//还有更多，默认显示‘正在加载更多...’
 			return <LoadMoreFooter />
 		}else{
+			// 加载全部
 			return <LoadMoreFooter isLoadAll={true}/>
 		}
 	}

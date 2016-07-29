@@ -4,12 +4,10 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
-
 class LoadMoreFooter extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <View style={styles.footer}>
@@ -18,7 +16,6 @@ class LoadMoreFooter extends Component {
         )
     }
 }
-
 const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
@@ -26,7 +23,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 40,
     },
-
     footerTitle: {
         marginLeft: 10,
         fontSize: 15,
