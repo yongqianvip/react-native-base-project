@@ -22,7 +22,7 @@ import {
 	changeProductListLoadingMore
 } from '../action/product.js';
 
-let _pageNo = 2;
+let _pageNo = 1;
 const _pageSize = 30;
 
 class ProductList extends Component {
@@ -40,7 +40,7 @@ class ProductList extends Component {
 	}
 
 	_onRefresh() {
-		this.props.dispatch(getProductList(2));
+		this.props.dispatch(getProductList(1));
 	}
 
 	_loadMoreData() {
@@ -52,6 +52,7 @@ class ProductList extends Component {
 
 	_toEnd() {
 		const { reducer } = this.props;
+		console.log("加载更多？ ",reducer.isLoadingMore, reducer.products.length, reducer.totalProductCount,reducer.isRefreshing);
 		//ListView滚动到底部，根据是否正在加载更多 是否正在刷新 是否已加载全部来判断是否执行加载更多
 		if (reducer.isLoadingMore || reducer.products.length >= reducer.totalProductCount || reducer.isRefreshing) {
 			return;
