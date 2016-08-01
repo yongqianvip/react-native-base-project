@@ -1,6 +1,11 @@
  RN-ListViewLoadMore
 react-native中处理ListView的下拉刷新和上拉加载更多  
 
+* 项目clone到本地后先执行如下命令
+
+	$ npm install
+
+
 `ReactNative`(`RN`)中的`ListView`是一个非常常用的组件，`RN`中已经有了现成的`RefreshControl`，官方文档中有具体用法，这里主要记录一下我是如何做**上拉加载更多**的
 示例中的数据来源于阿里巴巴网站
 
