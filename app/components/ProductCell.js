@@ -16,15 +16,17 @@ class ProductCell extends Component {
 	}
 
 	render() {
-		const {rowData, rowID} = this.props;
+		const {rowData, rowID, goToDetail} = this.props;
 		return (
-			<View style={ styles.cellContiner }>
-				<Image style={ styles.image } source={{uri: `https:${rowData.imagePath}`}}/>
-				<View style={ styles.textPart }>
-					<Text style={ styles.productName }>({ rowID - 0 + 1 }).{ rowData.productName }</Text>
-					<Text style={ styles.companyName }>{ rowData.companyName }</Text>
+			<TouchableOpacity onPress={ () => goToDetail(rowData) } >
+				<View style={ styles.cellContiner }>
+					<Image style={ styles.image } source={{uri: `https:${rowData.imagePath}`}}/>
+					<View style={ styles.textPart }>
+						<Text style={ styles.productName }>({ rowID - 0 + 1 }).{ rowData.productName }</Text>
+						<Text style={ styles.companyName }>{ rowData.companyName }</Text>
+					</View>
 				</View>
-			</View>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -65,5 +67,10 @@ const styles = StyleSheet.create({
 	},
 	
 })
+
+ProductCell.propTypes = {
+	goToDetail: React.PropTypes.func.isRequired,
+
+}
 
 export default ProductCell

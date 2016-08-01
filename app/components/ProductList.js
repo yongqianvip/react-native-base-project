@@ -21,6 +21,7 @@ import {
 	changeProductListRefreshing,
 	changeProductListLoadingMore
 } from '../action/product.js';
+import ProductDetailContainer from '../containers/ProductDetailContainer.js'
 
 let _pageNo = 1;
 const _pageSize = 30;
@@ -35,8 +36,20 @@ class ProductList extends Component {
 		this.props.dispatch(getProductList(_pageNo));		
 	}
 
+	_goToDetail(rowData) {
+		const { navigator } = this.props;
+
+		console.log("去商品详情页",rowData);
+		if(navigator) {
+			navigator.push({
+			    name: 'ProductDetailContainer',
+			    component: ProductDetailContainer,
+			})
+		}
+	}
+
 	_renderRow(rowData,SectionId,rowID) {
-		return <ProductCell rowData={rowData} rowID={ rowID }/>
+		return <ProductCell rowData={rowData} rowID={ rowID } goToDetail={ this._goToDetail.bind(this) }/>
 	}
 
 	_onRefresh() {
