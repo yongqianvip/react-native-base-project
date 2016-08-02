@@ -2,7 +2,7 @@
 import * as ActionTypes from '../constants/actionTypes'
 import HttpRequest from '../util/Http.js'
 const HOST = 'https://m.alibaba.com/products/'
-const keyWords = 'tool_boxes'
+const keyWords = 't-shirt'
 export function getProductList (pageNo=2) {
 	return dispatch => {
 		if (pageNo === 1) {

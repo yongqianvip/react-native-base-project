@@ -18,6 +18,7 @@ export default class App extends React.Component {
 			renderScene={(route, navigator) => {
 				let Component = route.component;
 				return <Component {...route.params} navigator={navigator} />
+				//  上面的route.params 是为了方便后续界面间传递参数用的
 			}} />
         );
     }

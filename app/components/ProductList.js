@@ -14,14 +14,15 @@ import { request } from '../util/Http.js'
 import reducer from '../reducers/rootReducer.js'
 import LoadMoreFooter from '../components/LoadMoreFooter.js'
 import ProductCell from '../components/ProductCell.js'
-const { width, height } = Dimensions.get('window')
-
+import NavigationBar from '../common/NavBarCommon.js'
 import {
 	getProductList,
 	changeProductListRefreshing,
 	changeProductListLoadingMore
 } from '../action/product.js';
 import ProductDetailContainer from '../containers/ProductDetailContainer.js'
+
+const { width, height } = Dimensions.get('window')
 
 let _pageNo = 1;
 const _pageSize = 30;
@@ -38,12 +39,14 @@ class ProductList extends Component {
 
 	_goToDetail(rowData) {
 		const { navigator } = this.props;
-
+		const imageUrl = `https:${rowData.imagePath}`;
 		console.log("去商品详情页",rowData);
 		if(navigator) {
 			navigator.push({
-			    name: 'ProductDetailContainer',
 			    component: ProductDetailContainer,
+			    params: {
+			    	rowData
+			    }
 			})
 		}
 	}
@@ -80,22 +83,24 @@ class ProductList extends Component {
 		const { reducer } = this.props;
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		return (
-			<ListView style={ styles.listViewContent } 
-				dataSource={ ds.cloneWithRows(reducer.products) } 
-				renderRow={ this._renderRow.bind(this) }
-				onEndReached={ this._toEnd.bind(this) }
-				onEndReachedThreshold={10}
-				renderFooter={ this._renderFooter.bind(this) }
-				enableEmptySections={true} 
-				refreshControl={
-					<RefreshControl
-						refreshing={ reducer.isRefreshing }
-						onRefresh={ this._onRefresh.bind(this) }
-						tintColor="gray"
-						colors={['#ff0000', '#00ff00', '#0000ff']}
-						progressBackgroundColor="gray"/>
-					}/>
-				
+			<View>
+				<NavigationBar title={'首页'}/>
+				<ListView style={ styles.listViewContent } 
+					dataSource={ ds.cloneWithRows(reducer.products) } 
+					renderRow={ this._renderRow.bind(this) }
+					onEndReached={ this._toEnd.bind(this) }
+					onEndReachedThreshold={10}
+					renderFooter={ this._renderFooter.bind(this) }
+					enableEmptySections={true} 
+					refreshControl={
+						<RefreshControl
+							refreshing={ reducer.isRefreshing }
+							onRefresh={ this._onRefresh.bind(this) }
+							tintColor="gray"
+							colors={['#ff0000', '#00ff00', '#0000ff']}
+							progressBackgroundColor="gray"/>
+						}/>
+			</View>
 		)
 	}
 
@@ -119,10 +124,10 @@ class ProductList extends Component {
 const styles = StyleSheet.create({
 	listViewContent: {
 		flex: 1,
-		paddingTop: 5,
 		paddingBottom: 20,
 		marginBottom: 0,
 		backgroundColor: '#FFEFDB',
+		height: height-64,
 	}
 })
 
