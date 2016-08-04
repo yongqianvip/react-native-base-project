@@ -55,6 +55,7 @@ class ProductDetail extends Component {
 
 		return (
 			<View style={ styles.mainView }>
+				
 				<ScrollView onScroll={ this._scrollViewScroll.bind(this) } scrollEventThrottle={15} style={ styles.mainScrollView }>
 					<Image style={ styles.image } source={{uri: `https:${this.props.rowData.imagePath.replace(/140x140/, `${2 * width}x${2 * width}`)}` }}/>
 					<View style={ [styles.infoView] }>
@@ -73,8 +74,9 @@ class ProductDetail extends Component {
 						<Text style={ styles.textInfo }>{ `paymentTerms: \n ${this.props.rowData.paymentTerms}` }</Text>
 					</View>
 				</ScrollView>
+				<Image style={ styles.backIcon } source={ backIcon }/>
 				<NavigationBar style={{opacity: this.state.navOpacity}} title={'图文详情'} leftImage={ backIcon } leftAction={ this._backToFront.bind(this) }/>
-
+				
 			</View>
 		)
 	}
@@ -123,6 +125,15 @@ const styles = StyleSheet.create({
 		opacity: 0,
 		backgroundColor: '#4ea5ff',
 	},
+	backIcon: {
+		position: 'absolute',
+		marginTop: 25,
+		marginLeft: 8,
+		width: 34,
+		height: 34,
+		backgroundColor: 'gray',
+		borderRadius: 18,
+	}
 })
 
 export default ProductDetail

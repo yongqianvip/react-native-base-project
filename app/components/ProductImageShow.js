@@ -7,6 +7,7 @@ import {
 	StyleSheet,
 	Dimensions,
 	TouchableOpacity,
+	NativeModules,
 } from 'react-native'
 import holderImage from '../../localSource/images/tree.png'
 import NavigationBar from '../common/NavBarCommon.js'
@@ -32,7 +33,6 @@ class ProductImageShow extends Component {
 	}
 
 	_toAnotherDetail() {
-		console.log("----<<<>>>>");
 		const { navigator, rowData } = this.props;
 		if(navigator) {
 			navigator.push({
@@ -51,8 +51,8 @@ class ProductImageShow extends Component {
 				<TouchableOpacity onPress={ this._toAnotherDetail.bind(this) }>
 					<Image style={ styles.image } source={{uri: `https:${this.props.rowData.imagePath.replace(/140x140/, `${2 * width}x${2 * width}`)}` }}/>
 				</TouchableOpacity>
-				<View style={{ marginTop: 20, height: 44, flexDirection:'column', alignItems: 'center' }}>
-					<Text style={{ fontWeight:'bold' }}>点击图片可以去图文详情页</Text>
+				<View style={ styles.bottomTitleView }>
+					<Text style={ styles.bottomTitle }>点击图片可以去图文详情页</Text>
 				</View>
 			</View>
 		)
@@ -69,6 +69,19 @@ const styles = StyleSheet.create({
 		height: width,
 		width,
 	},
+	bottomTitleView: {
+		margin: 40,
+		height: 44,
+		flexDirection:'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderWidth: 1,
+		borderColor: 'blue',
+	},
+	bottomTitle: { 
+		fontWeight:'bold',
+		color:'red',
+	}
 
 })
 
