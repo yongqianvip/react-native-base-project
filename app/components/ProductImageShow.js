@@ -32,6 +32,15 @@ class ProductImageShow extends Component {
 		}
 	}
 
+	_toast() {
+		// showMessage('提示信息内容','显示时长1~5秒','位置['top','center','bottom']')
+		NativeModules.NativeToast.showMessage(
+			`提示信息\n可以控制显示的时间\nshowTime:[1~5]\n可以控制提示信息显示的位置\nposition:['top','center','bottom']`,
+			5,
+			'center'
+		)
+	}
+
 	_toAnotherDetail() {
 		const { navigator, rowData } = this.props;
 		if(navigator) {
@@ -51,9 +60,11 @@ class ProductImageShow extends Component {
 				<TouchableOpacity onPress={ this._toAnotherDetail.bind(this) }>
 					<Image style={ styles.image } source={{uri: `https:${this.props.rowData.imagePath.replace(/140x140/, `${2 * width}x${2 * width}`)}` }}/>
 				</TouchableOpacity>
-				<View style={ styles.bottomTitleView }>
-					<Text style={ styles.bottomTitle }>点击图片可以去图文详情页</Text>
-				</View>
+				<TouchableOpacity onPress={ this._toast.bind(this) }>
+					<View style={ styles.bottomTitleView }>
+						<Text style={ styles.bottomTitle }>点击图片可以去图文详情页</Text>
+					</View>
+				</TouchableOpacity>
 			</View>
 		)
 	}
