@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 import holderImage from '../../localSource/images/tree.png'
 import NavigationBar from '../common/NavBarCommon.js'
+import backIcon from '../../localSource/images/back.png'
 
 const {height, width} = Dimensions.get('window');
 
@@ -27,6 +28,7 @@ class ProductDetail extends Component {
 	}
 
 	_backToFront() {
+		console.log("-----  <<<<");
 		const { navigator } = this.props;
 		if(navigator) {
 			navigator.pop();
@@ -71,18 +73,19 @@ class ProductDetail extends Component {
 						<Text style={ styles.textInfo }>{ `paymentTerms: \n ${this.props.rowData.paymentTerms}` }</Text>
 					</View>
 				</ScrollView>
-				<View style={ [styles.navbarView, {opacity: this.state.navOpacity}] }>
-					<View style={{marginTop: Platform.OS === 'ios' ? 20 : 0, height: 44, justifyContent: 'center', alignItems: 'center'}}>
-						<Text style={{color: 'white', fontWeight:'bold', fontSize: 18}}>
-							详情
-						</Text>
-					</View>
-				</View>
+				<NavigationBar style={{opacity: this.state.navOpacity}} title={'图文详情'} leftImage={ backIcon } leftAction={ this._backToFront.bind(this) }/>
+
 			</View>
 		)
 	}
 }
-
+// <View style={ [styles.navbarView, {opacity: this.state.navOpacity}] }>
+// 	<View style={{marginTop: Platform.OS === 'ios' ? 20 : 0, height: 44, justifyContent: 'center', alignItems: 'center'}}>
+// 		<Text style={{color: 'white', fontWeight:'bold', fontSize: 18}}>
+// 			详情
+// 		</Text>
+// 	</View>
+// </View>
 const styles = StyleSheet.create({
 	mainView: {
 		flex: 1,

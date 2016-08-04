@@ -20,7 +20,9 @@ import {
 	changeProductListRefreshing,
 	changeProductListLoadingMore
 } from '../action/product.js';
-import ProductDetailContainer from '../containers/ProductDetailContainer.js'
+// import ProductDetailContainer from '../containers/ProductDetailContainer.js'
+import ProductImageContainer from '../containers/ProductImageContainer.js'
+import backIcon from '../../localSource/images/back.png'
 
 const { width, height } = Dimensions.get('window')
 
@@ -43,7 +45,7 @@ class ProductList extends Component {
 		console.log("去商品详情页",rowData);
 		if(navigator) {
 			navigator.push({
-			    component: ProductDetailContainer,
+			    component: ProductImageContainer,
 			    params: {
 			    	rowData
 			    }
@@ -77,6 +79,10 @@ class ProductList extends Component {
 			console.log("触发加载更多 toEnd() --> ");
 			this._loadMoreData();
 		});
+	}
+
+	_leftAction() {
+		console.log("点击leftnav ");
 	}
 
 	render() {
