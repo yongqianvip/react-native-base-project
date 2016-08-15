@@ -6,7 +6,8 @@ const initialState = {
     products: [],
     isRefreshing: false,
     isLoadingMore: false,
-    totalProductCount: 200  //由服务端返回 这里临时指定一个值设置为上限
+    totalProductCount: 200,  //由服务端返回 这里临时指定一个值设置为上限
+    tabbarShow: true,
 };
 
 function reducer(state = initialState, action) {

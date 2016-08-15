@@ -20,7 +20,6 @@ class ProductImageShow extends Component {
 
 	constructor(props) {
 		super(props);
-		const { navigator,imageUrl } = this.props;
 		this.state = {
 			navOpacity: 0
 		}
