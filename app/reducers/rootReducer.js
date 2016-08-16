@@ -8,6 +8,7 @@ const initialState = {
     isLoadingMore: false,
     totalProductCount: 200,  //由服务端返回 这里临时指定一个值设置为上限
     tabbarShow: true,
+    tabbarHeight: 49,
 };
 
 function reducer(state = initialState, action) {
@@ -35,6 +36,12 @@ function reducer(state = initialState, action) {
         console.log("正在加载更多么？",action.value);
             newState = Object.assign({}, state, {
                 isLoadingMore: action.value
+            });
+            return newState;
+        case ActionTypes.TABBAR_SHOULD_SHOW: 
+        console.log("----------------- TABBAR_SHOULD_SHOW",action.value);
+            newState = Object.assign({}, state, {
+                tabbarHeight: action.value ? 49 : 0
             });
             return newState;
         default:

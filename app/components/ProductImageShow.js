@@ -13,7 +13,7 @@ import holderImage from '../../localSource/images/tree.png'
 import NavigationBar from '../common/NavBarCommon.js'
 import backIcon from '../../localSource/images/back.png'
 import ProductDetailContainer from '../containers/ProductDetailContainer.js'
-
+import { ShowTabBar } from '../action/TabbarHandle.js'
 const {height, width} = Dimensions.get('window');
 
 class ProductImageShow extends Component {
@@ -24,7 +24,11 @@ class ProductImageShow extends Component {
 			navOpacity: 0
 		}
 	}
+
 	_backToFront() {
+		const { dispatch } = this.props;
+		console.log("------------------------------------ProductImageShow-- backtofront ");
+		dispatch(ShowTabBar(true));
 		const { navigator } = this.props;
 		if(navigator) {
 			navigator.pop();
