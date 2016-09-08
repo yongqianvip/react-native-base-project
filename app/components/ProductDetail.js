@@ -127,12 +127,12 @@ const styles = StyleSheet.create({
 	},
 	backIcon: {
 		position: 'absolute',
-		marginTop: 25,
+		marginTop: Platform.OS === 'ios' ? 25 : 5,
 		marginLeft: 8,
 		width: 34,
 		height: 34,
 		backgroundColor: 'gray',
-		borderRadius: 18,
+		borderRadius: 17,
 	}
 })
 

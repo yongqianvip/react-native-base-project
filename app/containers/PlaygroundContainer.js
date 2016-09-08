@@ -2,9 +2,9 @@ import React, {
 	Component,
 } from 'react'
 import { connect } from 'react-redux'
-import ProductList from '../components/ProductList.js'
+import Playground from '../components/Playground.js'
 
-class ProductListContainer extends Component {
+class PlaygroundContainer extends Component {
 
 	constructor(props) {
 	  super(props);
@@ -12,7 +12,7 @@ class ProductListContainer extends Component {
 
 	render() {
 		return (
-			<ProductList { ...this.props } />
+			<Playground { ...this.props } />
 		);
 	}
 }
@@ -21,4 +21,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps)(ProductListContainer);
+export default connect(mapStateToProps)(PlaygroundContainer);

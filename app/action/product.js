@@ -2,7 +2,8 @@
 import * as ActionTypes from '../constants/actionTypes'
 import HttpRequest from '../util/Http.js'
 const HOST = 'https://m.alibaba.com/products/'
-const keyWords = 't-shirt'
+import Storage from '../common/Storage.js'
+const keyWords = 'bottle'
 export function getProductList (pageNo=1) {
 	return dispatch => {
 		if (pageNo === 1) {
@@ -49,6 +50,30 @@ export function changeProductListLoadingMore(argument) {
 	return {
 		type: ActionTypes.CHANGE_PRODUCT_LIST_LOADINGMORE,
 		value: argument
+	}
+}
+
+export function getViewRecords(key) {
+	return dispatch => {
+		Storage.getValueForKey(key).then((record) => {
+            console.log("get record success ,record is :",record);
+            if (record !== null && record !== undefined) {
+            	dispatch(gotViewRecord(record))
+            }else{
+            	dispatch(gotViewRecord([]))
+            }
+        },
+        (error) => {
+        	console.log("xxxxxxxxxxxxxxxxxxx ",error);
+        	dispatch(gotViewRecord([]))
+        });
+	}
+}
+
+function gotViewRecord(record) {
+	return {
+		type: ActionTypes.GET_VIEW_RECORDS,
+		value: record
 	}
 }
 

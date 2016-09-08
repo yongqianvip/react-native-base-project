@@ -9,6 +9,7 @@ const initialState = {
     totalProductCount: 200,  //由服务端返回 这里临时指定一个值设置为上限
     tabbarShow: true,
     tabbarHeight: 49,
+    viewRecord: [],
 };
 
 function reducer(state = initialState, action) {
@@ -33,15 +34,18 @@ function reducer(state = initialState, action) {
             });
             return newState;
         case ActionTypes.CHANGE_PRODUCT_LIST_LOADINGMORE: 
-        console.log("正在加载更多么？",action.value);
             newState = Object.assign({}, state, {
                 isLoadingMore: action.value
             });
             return newState;
         case ActionTypes.TABBAR_SHOULD_SHOW: 
-        console.log("----------------- TABBAR_SHOULD_SHOW",action.value);
             newState = Object.assign({}, state, {
                 tabbarHeight: action.value ? 49 : 0
+            });
+            return newState;
+        case ActionTypes.GET_VIEW_RECORDS:
+            newState = Object.assign({}, state, {
+                viewRecord: action.value
             });
             return newState;
         default:

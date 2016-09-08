@@ -9,6 +9,7 @@ import {
 	ListView,
 	InteractionManager,
 	RefreshControl,
+	Platform,
 } from 'react-native'
 import { request } from '../util/Http.js'
 import reducer from '../reducers/rootReducer.js'
@@ -19,10 +20,12 @@ import {
 	getProductList,
 	changeProductListRefreshing,
 	changeProductListLoadingMore
-} from '../action/product.js';
+} from '../action/product.js'
+import Storage from '../common/Storage.js'
 // import ProductDetailContainer from '../containers/ProductDetailContainer.js'
 import ProductImageContainer from '../containers/ProductImageContainer.js'
 import backIcon from '../../localSource/images/back.png'
+import SearchBar from './SearchBar.js'
 
 const { width, height } = Dimensions.get('window')
 
@@ -43,6 +46,8 @@ class ProductList extends Component {
 		const { navigator } = this.props;
 		const imageUrl = `https:${rowData.imagePath}`;
 		console.log("去商品详情页",rowData);
+		// Storage.removeValueForKey('lastestRecord');
+		Storage.mergeArrayWithKeyValue('lastestRecord',{name: rowData.companyName,id: rowData.companyId, imagePath: rowData.imagePath, productName: rowData.productName});
 		if(navigator) {
 			navigator.push({
 			    component: ProductImageContainer,
@@ -55,6 +60,10 @@ class ProductList extends Component {
 
 	_renderRow(rowData,SectionId,rowID) {
 		return <ProductCell rowData={rowData} rowID={ rowID } goToDetail={ this._goToDetail.bind(this) }/>
+	}
+
+	_renderHeader() {
+		return <SearchBar />
 	}
 
 	_onRefresh() {
@@ -81,10 +90,6 @@ class ProductList extends Component {
 		});
 	}
 
-	_leftAction() {
-		console.log("点击leftnav ");
-	}
-
 	render() {
 		const { reducer } = this.props;
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -94,6 +99,7 @@ class ProductList extends Component {
 				<ListView style={ styles.listViewContent } 
 					dataSource={ ds.cloneWithRows(reducer.products) } 
 					renderRow={ this._renderRow.bind(this) }
+
 					onEndReached={ this._toEnd.bind(this) }
 					onEndReachedThreshold={10}
 					renderFooter={ this._renderFooter.bind(this) }
@@ -133,7 +139,12 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		marginBottom: 0,
 		backgroundColor: '#FFEFDB',
-		height: height-64 - 49,
+		height: height- (Platform.OS === 'ios' ? 64 : 44) - 49,
+	},
+	searchBar: {
+		backgroundColor: 'yellow',
+		height: 40,
+		flexDirection: 'row'
 	}
 })
 
