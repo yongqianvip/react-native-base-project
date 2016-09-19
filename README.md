@@ -28,3 +28,6 @@
 <yongqianvip@gmail.com>
 
 [@文竹_bamboo](http://weibo.com/u/3069749675?is_hot=1)
+
+#### 6、项目浏览图
+![](https://github.com/yongqianvip/RN-ListViewLoadMore/blob/master/localSource/images/recorder.gif)
