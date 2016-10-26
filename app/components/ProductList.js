@@ -58,14 +58,6 @@ class ProductList extends Component {
 		}
 	}
 
-	_renderRow(rowData,SectionId,rowID) {
-		return <ProductCell rowData={rowData} rowID={ rowID } goToDetail={ this._goToDetail.bind(this) }/>
-	}
-
-	_renderHeader() {
-		return <SearchBar />
-	}
-
 	_onRefresh() {
 		this.props.dispatch(getProductList(1));
 	}
@@ -98,8 +90,12 @@ class ProductList extends Component {
 				<NavigationBar title={'首页'}/>
 				<ListView style={ styles.listViewContent } 
 					dataSource={ ds.cloneWithRows(reducer.products) } 
-					renderRow={ this._renderRow.bind(this) }
-
+					renderRow={ (rowData,SectionId,rowID) => {
+						return <ProductCell rowData={rowData} rowID={ rowID } goToDetail={ this._goToDetail.bind(this) }/>
+					} }
+					renderHeader={ () => {
+						return <SearchBar />
+					} }
 					onEndReached={ this._toEnd.bind(this) }
 					onEndReachedThreshold={10}
 					renderFooter={ this._renderFooter.bind(this) }
@@ -139,7 +135,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		marginBottom: 0,
 		backgroundColor: '#FFEFDB',
-		height: height- (Platform.OS === 'ios' ? 64 : 44) - 49,
+		height: height - 49 - (Platform.OS === 'ios' ? 64 : 44),
 	},
 	searchBar: {
 		backgroundColor: 'yellow',

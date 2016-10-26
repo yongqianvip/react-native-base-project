@@ -14,6 +14,7 @@ import {
 import holderImage from '../../localSource/images/tree.png'
 import NavigationBar from '../common/NavBarCommon.js'
 import backIcon from '../../localSource/images/back.png'
+import LoadingView from '../common/LoadingView.js'
 
 const {height, width} = Dimensions.get('window');
 
@@ -23,7 +24,8 @@ class ProductDetail extends Component {
 		super(props);
 		const { navigator,imageUrl } = this.props;
 		this.state = {
-			navOpacity: 0
+			navOpacity: 0,
+			showLoading: false
 		}
 	}
 
@@ -47,36 +49,44 @@ class ProductDetail extends Component {
 				navOpacity: 0
 			});
 		};
-		
+
 	}
 
+	_showLoading(event) {
+		const isLoading = this.state.showLoading
+		this.setState({
+			showLoading: !isLoading
+		})
+	}
 	render() {
 		const { imageOnLoad } = this.state;
 
 		return (
 			<View style={ styles.mainView }>
-				
-				<ScrollView onScroll={ this._scrollViewScroll.bind(this) } scrollEventThrottle={15} style={ styles.mainScrollView }>
-					<Image style={ styles.image } source={{uri: `https:${this.props.rowData.imagePath.replace(/140x140/, `${2 * width}x${2 * width}`)}` }}/>
-					<View style={ [styles.infoView] }>
-						<Text style={ styles.textInfo }>{ `Product Name: \n ${this.props.rowData.productName}` }</Text>
-					</View>
-					<View style={ [styles.infoView] }>
-						<Text style={ styles.textInfo }>{ `Company Name: \n ${this.props.rowData.companyName}` }</Text>
-					</View>
-					<View style={ styles.infoView }>
-						<Text style={ styles.textInfo }>{ `mainProducts: \n ${this.props.rowData.mainProducts}` }</Text>
-					</View>
-					<View style={ styles.infoView }>
-						<Text style={ styles.textInfo }>{ `productDetailUrl: \n ${this.props.rowData.productDetailUrl}` }</Text>
-					</View>
-					<View style={ [styles.infoView,{marginBottom: 10}] }>
-						<Text style={ styles.textInfo }>{ `paymentTerms: \n ${this.props.rowData.paymentTerms}` }</Text>
-					</View>
-				</ScrollView>
-				<Image style={ styles.backIcon } source={ backIcon }/>
-				<NavigationBar style={{opacity: this.state.navOpacity}} title={'图文详情'} leftImage={ backIcon } leftAction={ this._backToFront.bind(this) }/>
-				
+				<View style={{ backgroundColor: 'orange' }}>
+					<ScrollView onScroll={ this._scrollViewScroll.bind(this) } scrollEventThrottle={15} style={ styles.mainScrollView }>
+						<TouchableOpacity onPress={ this._showLoading.bind(this) }>
+							<Image style={ styles.image } source={{uri: `https:${this.props.rowData.imagePath.replace(/140x140/, `${2 * width}x${2 * width}`)}` }}/>
+						</TouchableOpacity>
+						<View style={ [styles.infoView] }>
+							<Text style={ styles.textInfo }>{ `Product Name: \n ${this.props.rowData.productName}` }</Text>
+						</View>
+						<View style={ [styles.infoView] }>
+							<Text style={ styles.textInfo }>{ `Company Name: \n ${this.props.rowData.companyName}` }</Text>
+						</View>
+						<View style={ styles.infoView }>
+							<Text style={ styles.textInfo }>{ `mainProducts: \n ${this.props.rowData.mainProducts}` }</Text>
+						</View>
+						<View style={ styles.infoView }>
+							<Text style={ styles.textInfo }>{ `productDetailUrl: \n ${this.props.rowData.productDetailUrl}` }</Text>
+						</View>
+						<View style={ [styles.infoView,{marginBottom: 10}] }>
+							<Text style={ styles.textInfo }>{ `paymentTerms: \n ${this.props.rowData.paymentTerms}` }</Text>
+						</View>
+					</ScrollView>
+					<Image style={ styles.backIcon } source={ backIcon }/>
+					<NavigationBar style={{opacity: this.state.navOpacity}} title={'图文详情'} leftImage={ backIcon } leftAction={ this._backToFront.bind(this) }/>
+				</View>
 			</View>
 		)
 	}

@@ -20,47 +20,47 @@ class NavigationBar extends Component {
             <View style={[styles.barView, this.props.style]}>
             	<View style={ styles.showView }>
             		{
-            			(()=>{
-            				if (leftTitle) {
-            					return <TouchableOpacity style={styles.leftNav} onPress={ ()=>{leftAction()} }>
-	            						<View style={{alignItems: 'center'}}>
-	            							<Text style={styles.barButton}>{leftTitle}</Text>
-	            						</View>
-	            					</TouchableOpacity>
-            				} else if (leftImage) {
-            					return <TouchableOpacity style={styles.leftNav} onPress={ ()=>{leftAction()} }>
-	            						<View style={{alignItems: 'center'}}>
-	            							<Image source={ leftImage }/>
-	            						</View>
-	            					</TouchableOpacity>
-            				};
-            			})()
+                        leftTitle
+                        ?
+                        <TouchableOpacity style={styles.leftNav} onPress={ ()=>{leftAction()} }>
+                            <View style={{alignItems: 'center'}}>
+                                <Text style={styles.barButton}>{leftTitle}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        :
+                        (
+                            leftImage
+                            ?
+                            <TouchableOpacity style={styles.leftNav} onPress={ ()=>{leftAction()} }>
+                                <View style={{alignItems: 'center'}}>
+                                    <Image source={ leftImage }/>
+                                </View>
+                            </TouchableOpacity>
+                            : null
+                        )
             		}
 		            {
-		            	(()=>{
-		            		if (title) {
-								return <Text style={styles.title}>{title || ''}</Text>				
-		            		}
-		            	})()
+                        title ?
+                        <Text style={styles.title}>{title || ''}</Text>
+                        : null
 		            }
 		            {
-		            	(()=>{
-		            		if (rightTitle) {
-		            			return <TouchableOpacity style={styles.rightNav} onPress={ ()=>{rightAction()} }>
-			            				<View style={{alignItems: 'center'}}>
-			            					<Text style={styles.barButton}>{rightTitle}</Text>
-			            				</View>
-			            			</TouchableOpacity>
-		            		} else if (rightImage) {
-		            			return <TouchableOpacity style={styles.rightNav} onPress={ ()=>{rightAction()} }>
-						            	<View style={{alignItems: 'center'}}>
-						            		<Image source={ rightImage }/>
-						            	</View>
-						            </TouchableOpacity>
-		            		}
-		            	})()
+                        rightTitle ?
+                        <TouchableOpacity style={styles.rightNav} onPress={ ()=>{rightAction()} }>
+                            <View style={{alignItems: 'center'}}>
+                            	<Text style={styles.barButton}>{rightTitle}</Text>
+                            </View>
+                        </TouchableOpacity>
+		            	: (rightImage ?
+		            		<TouchableOpacity style={styles.rightNav} onPress={ ()=>{rightAction()} }>
+				            	<View style={{alignItems: 'center'}}>
+				            		<Image source={ rightImage }/>
+				            	</View>
+				            </TouchableOpacity>
+                            : null
+                        )
 		            }
-		            
+
 		        </View>
             </View>
         )

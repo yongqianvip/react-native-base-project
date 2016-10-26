@@ -55,7 +55,7 @@ class Other extends Component {
                         `${ serviceItems[rowID] }`,
                         1.5,
                         'center'
-                    )    
+                    )
                 };
             }
         }
@@ -72,7 +72,7 @@ class Other extends Component {
                     dataSource={ ds.cloneWithRows(serviceItems) }
                     renderRow={ (rowData,SectionId,rowID)=> {
                             return <Cell rowData={rowData} rowID={ rowID } cellClick={ this._cellClick.bind(this,rowID) }/>
-                        } 
+                        }
                     }
                     contentContainerStyle={styles.list}/>
             </View>
@@ -80,8 +80,8 @@ class Other extends Component {
     }
 }
 // renderHeader={ ()=>{
-//         return 
-//     } 
+//         return
+//     }
 // }
 
 class Cell extends Component {
