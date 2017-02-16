@@ -1,3 +1,12 @@
+// import keyMirror from 'react/lib/keyMirror';
+
+// export default keyMirror({
+//     GET_PRODUCT_LIST_SUCC: null,
+//     CHANGE_PRODUCT_LIST_REFRESHING: null,
+//     CHANGE_PRODUCT_LIST_LOADINGMORE: null,
+//     GET_VIEW_RECORDS: null
+// });
+
 
 export const GET_PRODUCT_LIST_SUCC = 'GET_PRODUCT_LIST_SUCC'
 
@@ -8,3 +17,11 @@ export const CHANGE_PRODUCT_LIST_LOADINGMORE = 'CHANGE_PRODUCT_LIST_LOADINGMORE'
 export const TABBAR_SHOULD_SHOW = 'TABBAR_SHOULD_SHOW'
 
 export const GET_VIEW_RECORDS = 'GET_VIEW_RECORDS'
+
+
+export const CHANGE_PLAY_ITEM_SHOW_INDEX = 'CHANGE_PLAY_ITEM_SHOW_INDEX'
+
+export const GOT_CURRENT_LOCATION = 'GOT_CURRENT_LOCATION'
+
+export const RESET_CURRENT_LOCATION = 'RESET_CURRENT_LOCATION'
+

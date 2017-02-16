@@ -18,7 +18,8 @@ class MoreContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	return state;
+	const { userReducer } = state;
+	return userReducer;
 }
 
 export default connect(mapStateToProps)(MoreContainer);

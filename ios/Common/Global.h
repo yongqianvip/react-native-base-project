@@ -28,6 +28,7 @@
 @interface Global : NSObject
 
 @property (strong, nonatomic) NSString *uuid;   //uuid
+@property(nonatomic, strong)NSMutableArray *messageQueue;
 
 +(Global *) sharedInstance;
 

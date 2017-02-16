@@ -12,7 +12,7 @@ import {
 	Platform,
 } from 'react-native'
 import { request } from '../util/Http.js'
-import reducer from '../reducers/rootReducer.js'
+// import userReducer from '../reducers/rootReducer.js'
 import LoadMoreFooter from '../components/LoadMoreFooter.js'
 import ProductCell from '../components/ProductCell.js'
 import NavigationBar from '../common/NavBarCommon.js'
@@ -39,7 +39,7 @@ class ProductList extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(getProductList(_pageNo));		
+		this.props.dispatch(getProductList(_pageNo));
 	}
 
 	_goToDetail(rowData) {
@@ -63,17 +63,17 @@ class ProductList extends Component {
 	}
 
 	_loadMoreData() {
-		const { reducer, dispatch } = this.props;
+		const { userReducer, dispatch } = this.props;
 		dispatch(changeProductListLoadingMore(true));
-		_pageNo = Number.parseInt(reducer.products.length / _pageSize) + 1;
+		_pageNo = parseInt(userReducer.products.length / _pageSize) + 1;
 		dispatch(getProductList(_pageNo));
 	}
 
 	_toEnd() {
-		const { reducer } = this.props;
-		console.log("加载更多？ ",reducer.isLoadingMore, reducer.products.length, reducer.totalProductCount,reducer.isRefreshing);
+		const { userReducer } = this.props;
+		console.log("加载更多？ ",userReducer.isLoadingMore, userReducer.products.length, userReducer.totalProductCount,userReducer.isRefreshing);
 		//ListView滚动到底部，根据是否正在加载更多 是否正在刷新 是否已加载全部来判断是否执行加载更多
-		if (reducer.isLoadingMore || reducer.products.length >= reducer.totalProductCount || reducer.isRefreshing) {
+		if (userReducer.isLoadingMore || userReducer.products.length >= userReducer.totalProductCount || userReducer.isRefreshing) {
 			return;
 		};
 		InteractionManager.runAfterInteractions(() => {
@@ -83,13 +83,13 @@ class ProductList extends Component {
 	}
 
 	render() {
-		const { reducer } = this.props;
+		const { userReducer } = this.props;
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		return (
 			<View>
 				<NavigationBar title={'首页'}/>
-				<ListView style={ styles.listViewContent } 
-					dataSource={ ds.cloneWithRows(reducer.products) } 
+				<ListView style={ styles.listViewContent }
+					dataSource={ ds.cloneWithRows(userReducer.products) }
 					renderRow={ (rowData,SectionId,rowID) => {
 						return <ProductCell rowData={rowData} rowID={ rowID } goToDetail={ this._goToDetail.bind(this) }/>
 					} }
@@ -99,10 +99,10 @@ class ProductList extends Component {
 					onEndReached={ this._toEnd.bind(this) }
 					onEndReachedThreshold={10}
 					renderFooter={ this._renderFooter.bind(this) }
-					enableEmptySections={true} 
+					enableEmptySections={true}
 					refreshControl={
 						<RefreshControl
-							refreshing={ reducer.isRefreshing }
+							refreshing={ userReducer.isRefreshing }
 							onRefresh={ this._onRefresh.bind(this) }
 							tintColor="gray"
 							colors={['#ff0000', '#00ff00', '#0000ff']}
@@ -113,12 +113,12 @@ class ProductList extends Component {
 	}
 
 	_renderFooter() {
-		const { reducer } = this.props;
+		const { userReducer } = this.props;
 		//通过当前product数量和刷新状态（是否正在下拉刷新）来判断footer的显示
-		if (reducer.products.length < 1 || reducer.isRefreshing) {
+		if (userReducer.products.length < 1 || userReducer.isRefreshing) {
 			return null
 		};
-		if (reducer.products.length < reducer.totalProductCount) {
+		if (userReducer.products.length < userReducer.totalProductCount) {
 			//还有更多，默认显示‘正在加载更多...’
 			return <LoadMoreFooter />
 		}else{

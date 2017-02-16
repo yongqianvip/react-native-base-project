@@ -13,9 +13,9 @@ class Root extends React.Component {
 	render() {
 		return (
 			<Provider store={ store }>
-				<Navigator 
+				<Navigator
 				    initialRoute={{ component: App }}
-				    configureScene={(route) => {
+				    configureScene={(route, routeStack) => {
 				        return Navigator.SceneConfigs.FloatFromRight;
 				    }}
 				    renderScene={(route, navigator) => {

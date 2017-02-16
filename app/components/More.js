@@ -26,9 +26,9 @@ class More extends Component {
     //         console.log("+++++++++++++++++++++++++++ ",value);
     //     });
     // }
-    
+
     componentDidMount() {
-        this.props.dispatch(getViewRecords('lastestRecord'));       
+        this.props.dispatch(getViewRecords('lastestRecord'));
     }
 
     _backToFront() {
@@ -40,16 +40,16 @@ class More extends Component {
     _renderRow(rowData,SectionId,rowID) {
         return <RecordCell rowData={ rowData } rowID={ rowID } />
     }
-    
+
     render() {
-        const { reducer } = this.props;
+        // const { userReducer } = this.props;
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         return (
             <View>
                 <NavigationBar title={'浏览记录'} leftImage={ backIcon } leftAction={ this._backToFront.bind(this) }/>
-                <ListView 
-                    style={ styles.listViewContent } 
-                    dataSource={ ds.cloneWithRows(reducer.viewRecord) } 
+                <ListView
+                    style={ styles.listViewContent }
+                    dataSource={ ds.cloneWithRows(this.props.viewRecord) }
                     renderRow={ this._renderRow.bind(this) }
                     enableEmptySections={ true }/>
             </View>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray',
         marginLeft: 8,
     }
-    
+
 })
 
 export default More

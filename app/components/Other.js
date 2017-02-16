@@ -49,12 +49,22 @@ class Other extends Component {
                         keyWords: '你好，我是更多。。。。。。'
                     }
                 })
-            } else {
+            } else if (rowID == '1') {
+                if (Platform.OS === 'ios') {
+                    NativeModules.ImagePicker.showAndGetImagePathWithCamOrLab('CAM',(error,event) => {
+                        if (error) {
+                            console.log("get image path error ");
+                        } else {
+                            console.log("get image path ",event.filePath);
+                        }
+                    })
+                };
+            }
+
+            else {
                 if (Platform.OS === 'ios') {
                     NativeModules.NativeToast.showMessage(
-                        `${ serviceItems[rowID] }`,
-                        1.5,
-                        'center'
+                        `${ serviceItems[rowID] }`
                     )
                 };
             }
@@ -79,10 +89,7 @@ class Other extends Component {
         )
     }
 }
-// renderHeader={ ()=>{
-//         return
-//     }
-// }
+
 
 class Cell extends Component {
     constructor(props) {

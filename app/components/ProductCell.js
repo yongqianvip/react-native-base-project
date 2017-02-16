@@ -3,7 +3,6 @@ import {
 	View,
 	Text,
 	StyleSheet,
-	ScrollView,
 	TouchableOpacity,
 	Dimensions,
 	Image
@@ -16,9 +15,10 @@ class ProductCell extends Component {
 	}
 
 	render() {
+
 		const {rowData, rowID, goToDetail} = this.props;
 		return (
-			<TouchableOpacity onPress={ () => goToDetail(rowData) } >
+			<TouchableOpacity activeOpacity={0.7} onPress={ () => goToDetail(rowData) } >
 				<View style={ styles.cellContiner }>
 					<Image style={ styles.image } source={{uri: `https:${rowData.imagePath}`}}/>
 					<View style={ styles.textPart }>
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 		borderTopColor: '#EEE9E9',
 		borderBottomColor: '#EEE9E9',
 		backgroundColor: 'white',
-		height: 100,
 		alignItems: 'center',
 	},
 	image: {
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
 		fontSize: 14.0,
 		color: 'gray',
 	},
-	
+
 })
 
 ProductCell.propTypes = {

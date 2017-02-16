@@ -10,3 +10,9 @@ export default function configureStore(initialState) {
 	const store = createStoreWithMiddleware(rootReducer, initialState);
 	return store;
 }
+
+
+// import { createStore } from 'redux'
+// import rootReducer from '../reducers/rootReducer.js'
+
+// let store = createStore(rootReducer)

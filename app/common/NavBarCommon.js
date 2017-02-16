@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
     },
     barButton: {
-        color: 'white'
+        color: 'white',
+        fontSize: 18
     },
 })
 

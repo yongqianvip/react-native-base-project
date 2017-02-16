@@ -10,7 +10,6 @@ import PlaygroundContainer from './PlaygroundContainer'
 import OtherContainer from './OtherContainer.js'
 import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/Ionicons';
-import reducer from '../reducers/rootReducer.js'
 
 class App extends React.Component {
     constructor(props) {
@@ -22,8 +21,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { reducer } = this.props;
-        console.log("============",reducer.tabbarHeight);
+
         return (
             <TabNavigator tabBarStyle={{ backgroundColor:'white' }} style={{backgroundColor: 'white'}}>
                 <TabNavigator.Item
@@ -53,7 +51,7 @@ class App extends React.Component {
             </TabNavigator>
         );
     }
-} 
+}
 function mapStateToProps(state) {
     return state;
 }

@@ -16,7 +16,8 @@ export function getProductList (pageNo=1) {
 		return HttpRequest(`${HOST}${keyWords}/${pageNo}.html?XPJAX=1`)
 			.then((responseData) => {
 				dispatch(gotProductList(responseData,pageNo,));
-				console.log(`---------> ,成功加载${responseData.productNormalList.length}条数据`);
+				console.log(`---------> ,成功加载${responseData.productNormalList.length}条数据`, ActionTypes);
+				// console.log("********* ",responseData);
 				if (pageNo === 1) {
 					dispatch(changeProductListRefreshing(false));
 				}else{
@@ -47,6 +48,7 @@ export function changeProductListRefreshing(argument) {
 }
 // 加载更多（状态）
 export function changeProductListLoadingMore(argument) {
+	console.log(" changeProductListLoadingMore ",argument);
 	return {
 		type: ActionTypes.CHANGE_PRODUCT_LIST_LOADINGMORE,
 		value: argument

@@ -14,6 +14,7 @@
   @synchronized(self) {
     if (global == nil) {
       global = [[self alloc] init];
+      global.messageQueue = [[NSMutableArray alloc] initWithCapacity:3];
     }
   }
   return global;
