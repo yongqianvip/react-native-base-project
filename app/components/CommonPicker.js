@@ -5,6 +5,7 @@ import {
     Animated
 } from 'react-native';
 import PCA from '../constants/pca.json'
+import PropTypes from 'prop-types';
 import Picker from 'react-native-picker';
 const { width, height } = Dimensions.get('window')
 
@@ -41,8 +42,8 @@ class CommonPicker extends Component {
 }
 
 CommonPicker.propTypes = {
-    onPickerConfirm: React.PropTypes.func.isRequired,
-    onPickerCancel: React.PropTypes.func.isRequired,
-    onPickerSelect: React.PropTypes.func.isRequired,
+    onPickerConfirm: PropTypes.func.isRequired,
+    onPickerCancel: PropTypes.func.isRequired,
+    onPickerSelect: PropTypes.func.isRequired,
 }
 export default CommonPicker

@@ -3,19 +3,36 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "coordtransform": "^2.1.1",
-    "react": "15.2.1",
-    "react-native": "0.30.0",
+    "coordtransform": "^2.1.2",
+    "react": "16.0.0",
+    "react-native": "^0.50.4",
+    "react-native-camera": "^0.12.0",
+    "react-native-image-placeholder": "^1.0.14",
+    "react-native-linear-gradient": "^2.3.0",
     "react-native-loading-spinner-overlay": "^0.3.0",
+    "react-native-permissions": "^1.0.4",
     "react-native-picker": "^4.0.10",
+    "react-native-progress": "^3.4.0",
+    "react-native-smscode-count-down": "^0.1.14",
     "react-native-swiper": "^1.4.11",
     "react-native-tab-navigator": "^0.3.3",
-    "react-native-vector-icons": "^2.0.3",
+    "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0-beta.5",
+    "redux-logger": "^3.0.6"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

@@ -8,6 +8,7 @@ import {
     Dimensions,
     Animated
 } from 'react-native';
+import PropTypes from 'prop-types';
 import PCA from '../constants/pca.json'
 import Button from '../common/Button.js'
 const { width, height } = Dimensions.get('window')
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
 })
 
 AddressPicker.propTypes = {
-    sureAndCloseWithResult: React.PropTypes.func.isRequired,
+    sureAndCloseWithResult: PropTypes.func.isRequired,
 }
 
 

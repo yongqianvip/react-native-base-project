@@ -8,6 +8,7 @@ import {
 	Modal
 } from 'react-native';
 const { width, height } = Dimensions.get('window')
+import PropTypes from 'prop-types';
 import loadingImage from '../../assets/doctor.gif'
 class LoadingView extends Component{
 	constructor(props) {
@@ -57,10 +58,10 @@ const styles = StyleSheet.create({
 	}
 })
 LoadingView.propTypes = {
-	closeLoading: React.PropTypes.func, //.isRequired,
-	showLoading: React.PropTypes.bool.isRequired,
-	opacity: React.PropTypes.number,
-	backgroundColor: React.PropTypes.string
+	closeLoading: PropTypes.func, //.isRequired,
+	showLoading: PropTypes.bool.isRequired,
+	opacity: PropTypes.number,
+	backgroundColor: PropTypes.string
 }
 
 export default LoadingView

@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
 
 })
 
-ProductCell.propTypes = {
-	goToDetail: React.PropTypes.func.isRequired,
+// ProductCell.propTypes = {
+// 	goToDetail: React.PropTypes.func.isRequired,
 
-}
+// }
 
 export default ProductCell
