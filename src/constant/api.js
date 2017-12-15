@@ -65,3 +65,5 @@ export const GET_LOCATION_INFO = 'http://zhwnlapi.etouch.cn/Ecalender/api/city'
 // keyword=搜索关键词
 // t=1512629976388
 
+export const API_WEATHER_WEB = 'http://yun.rili.cn/tianqi/index.html'
+// city : cityId

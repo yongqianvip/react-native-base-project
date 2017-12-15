@@ -151,12 +151,6 @@ class WeatherScreen extends React.Component {
             })
           }}
             title="唐河"/>
-
-
-          <Button onPress={() => {
-
-          }}
-            title="南阳宛城区"/>
           <Button onPress={() => {
             this.props.getLocationInfo({
               gpstype: 'gd',
@@ -167,6 +161,11 @@ class WeatherScreen extends React.Component {
             })
           }}
             title="昌平"/>
+          <Button onPress={() => {
+            console.log( 'city id == ',this.props.location.get('locationId'));
+            this.props.navigation.navigate('WeatherWebScreen',{cityId: this.props.location.get('locationId')})
+          }}
+            title="天气详情"/>
         </View>
       </View>
     );
