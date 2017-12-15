@@ -49,6 +49,12 @@ class DetailsScreen extends React.Component {
             }}
             title="Progress"/>
 
+          <Button
+            onPress={() => {
+              navigation && navigation.navigate && navigation.navigate('FloderScreen')
+            }}
+            title="FlodView"/>
+
           <Button onPress={() => {
           	console.log("===== show full screen ");
           	// setTimeout(()=>{

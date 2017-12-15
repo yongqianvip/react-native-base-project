@@ -12,6 +12,7 @@ import ArticleListScreen from '../container/pm/article.js'
 import WeatherScreen from '../container/weather/weather.js'
 import ProgressViewScreen from '../container/animated/progressView.js'
 import WeatherWebScreen from '../container/weather/weatherWeb';
+import FloderScreen from '../container/floder/floderContainer';
 
 const MainScreenNavigator = TabNavigator({
   Home: {
@@ -84,6 +85,9 @@ export const AppNavigator = StackNavigator({
   },
   WeatherWebScreen: {
     screen: WeatherWebScreen
+  },
+  FloderScreen: {
+    screen: FloderScreen
   }
 },{
   mode: 'card',
