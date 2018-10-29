@@ -41,6 +41,7 @@ class ProductListContainer extends Component {
 	}
 
 	componentDidMount() {
+		alert('mount');
 		this.props.dispatch(getProductList(_pageNo));
 		// console.log("--- home props ",this.props);
 	}

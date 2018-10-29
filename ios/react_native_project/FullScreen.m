@@ -38,7 +38,7 @@ RCT_EXPORT_METHOD(show)
     [bgview addSubview:progressLabel];
   });
 }
-RCT_EXPORT_METHOD(close)
+RCT_EXPORT_METHOD(close: (BOOL)clo callBack:(RCTResponseSenderBlock)callback male:(BOOL)isMale )
 {
   [self closeTopWindow];
 }

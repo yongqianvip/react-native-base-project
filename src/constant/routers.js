@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, Modal } from 'react-native';
-import { StackNavigator, TabNavigator, DrawerNavigator, addNavigationHelpers } from 'react-navigation';
+import { StackNavigator, TabNavigator, DrawerNavigator, addNavigationHelpers, TabBarBottom } from 'react-navigation';
 import HomeScreen from '../container/home.js'
 import DetailsScreen from '../container/detail.js'
 import MineScreen from '../container/mine.js'
@@ -13,6 +13,7 @@ import WeatherScreen from '../container/weather/weather.js'
 import ProgressViewScreen from '../container/animated/progressView.js'
 import WeatherWebScreen from '../container/weather/weatherWeb';
 import FloderScreen from '../container/floder/floderContainer';
+import TestListScreen from '../container/testList';
 
 const MainScreenNavigator = TabNavigator({
   Home: {
@@ -28,21 +29,32 @@ const MainScreenNavigator = TabNavigator({
     screen: MineScreen
   }
 }, {
+  tabBarPosition: 'bottom',
   tabBarOptions:{
+    showIcon: true,
+    tabBarComponent: TabBarBottom,
     // showLabel: false,
+    activeTintColor:'green',
+    inactiveTintColor: 'brown', 
     style: {
       height: 49,           //iPhone X 49 + 34
       paddingBottom: 0,      //iPhone X 34
-      backgroundColor: 'white',
+      backgroundColor: 'orange',
       padding: 1,
       borderTopColor: 'lightgray'
     },
     labelStyle: {
-      fontSize: 14
+      fontSize: 12,
+      color: 'red'
     },
     tabStyle: {
       backgroundColor: 'white'
-    }
+    },
+    indicatorStyle: {
+      backgroundColor: 'transparent',
+      height: 0 // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了
+    },
+
   }
 })
 
@@ -88,6 +100,9 @@ export const AppNavigator = StackNavigator({
   },
   FloderScreen: {
     screen: FloderScreen
+  },
+  TestListScreen: {
+    screen: TestListScreen
   }
 },{
   mode: 'card',
@@ -95,8 +110,9 @@ export const AppNavigator = StackNavigator({
   navigationOptions: {
     headerTitleAllowFontScaling: false,
     headerStyle: {
-      height: 20+44,         // iPhone x  44 + 44,
-      paddingTop: 20,     // iPhone x  44
+      backgroundColor: '#FFFFFF',
+      height: 44,         // iPhone x  44 + 44,
+      paddingTop: 0,     // iPhone x  44
       // borderBottomColor: 'red',
       borderBottomWidth:0,
       backgroundColor: 'orange'

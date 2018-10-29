@@ -1,4 +1,7 @@
 const Fetch = store => next => action => {
+	console.log('====================================');
+	console.log('f发起网络请求', action.type, action.payload);
+	console.log('====================================');
 	if (action.type != 'ACTION_FETCH') {
 		return next(action);
 	}

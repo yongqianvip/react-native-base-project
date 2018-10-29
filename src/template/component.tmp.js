@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-    View,
-    StyleSheet
+  View,
+  StyleSheet
 } from 'react-native';
 import PropTypes from 'prop-types';
 

@@ -19,7 +19,7 @@ const initialState = Immutable.fromJS({
 	locationId: '',
 })
 
-const pmArticle = (state = initialState, action) => {
+const location = (state = initialState, action) => {
 	let newState =state
 	const {payload} = action
 	switch (action.type) {
@@ -35,4 +35,4 @@ const pmArticle = (state = initialState, action) => {
 	}
 }
 
-export default pmArticle
+export default location

@@ -55,23 +55,14 @@ class DetailsScreen extends React.Component {
             }}
             title="FlodView"/>
 
-          <Button onPress={() => {
-          	console.log("===== show full screen ");
-          	// setTimeout(()=>{
-	          	NativeModules.FullScreen.show()
-          	// }, 500);
-          	let progress = 0
-          	this.interval = setInterval(()=>{
-          		progress += 1
-          		console.log("==== progress ",progress);
-							NativeModules.FullScreen.updateProgress(`更新${progress}%`)
-							if (progress >= 100) {
-								this.interval && clearInterval(this.interval)
-								NativeModules.FullScreen.close()
-								console.log(" close !");
+          <Button
+            onPress={() => {
+              navigation && navigation.navigate && navigation.navigate('TestListScreen')
+            }}
+            title="To list view"/>
 
-							};
-          	}, 100)
+          <Button onPress={() => {
+
           }}
           				title="show full screen"/>
       </View>

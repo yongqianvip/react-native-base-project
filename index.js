@@ -13,7 +13,7 @@ const logger = createLogger({
 // logger options
 });
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware, logger, Fetch));
+const store = createStore(reducer, applyMiddleware(thunkMiddleware, Fetch ));
 
 // console.log(" ---- store",store);
 class Root extends React.Component {

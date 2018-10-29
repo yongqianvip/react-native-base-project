@@ -5,7 +5,7 @@ const initialState = Immutable.fromJS({
 	weather: {}
 })
 
-const pmArticle = (state = initialState, action) => {
+export default (state = initialState, action) => {
 	let newState =state
 	switch (action.type) {
 		case ActionType.ACTION_UPDATE_WEATHER:
@@ -16,4 +16,4 @@ const pmArticle = (state = initialState, action) => {
 	}
 }
 
-export default pmArticle
+

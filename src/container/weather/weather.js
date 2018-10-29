@@ -173,6 +173,9 @@ class WeatherScreen extends React.Component {
 }
 const mapstateToProps = (state)=>{
   const {location,weather} = state;
+  console.log('====================================');
+  console.log(state);
+  console.log('====================================');
   return {
     location,
     weather: weather.get('weather').toJS()
